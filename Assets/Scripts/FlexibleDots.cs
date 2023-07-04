@@ -6,11 +6,11 @@ public class FlexibleDots : MonoBehaviour
 {
     static bool isSomePointPicked = false;
     bool isDotDraggable = false;
-    Vector2 mousePos;
+    Vector2 mousePos, initialPos;
     public Vector3 prevPos;
 
     void Start(){
-        prevPos = gameObject.transform.position; 
+        prevPos = initialPos = gameObject.transform.position; 
     }
     void Update(){
         if (Input.GetMouseButton(0)){
@@ -23,9 +23,12 @@ public class FlexibleDots : MonoBehaviour
             isSomePointPicked = false;
             isDotDraggable = false;
             prevPos = gameObject.transform.position;
+        
         }
         if(isDotDraggable){
             gameObject.transform.position = mousePos;
+        } else {
+            gameObject.transform.position = initialPos;
         }
 
         
